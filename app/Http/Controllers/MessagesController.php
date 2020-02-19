@@ -1,22 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate/Support/Facades/Mail;
+
+use App\Mail\MessageReceived;
+use Illuminate\Support\Facades\Mail;
 
 
 class MessagesController extends Controller
 {
 	public function store(){
-		request()->validate([
+		$message = request()->validate([
 			'name' => 'required',
 			'email'=>'required|email',
 			'subject'=>'required',
-			'content'=>'required|min:3'
+			'content'=>'required'
 		], [
 			'name.required' =>'Pusiste mal tu nombre bro '
 		]);
 		//Sending E-Mails with laravel
 
-		return 'datos validados';
+		Mail::to('luis@ea.com')->queue(new MessageReceived($message));
+		//return new MessageReceived($message);
+
+		return 'mensaje enviado';
 	}
 }
