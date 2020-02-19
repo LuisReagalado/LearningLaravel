@@ -2,16 +2,15 @@
 <html>
 <head>
 	<title>@yield('title') </title>
+	<style>
+		.active a{
+			color: green;
+			text-decoration: none;
+		}
+	</style>
 </head>
 <body>
-	<nav>
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/about">about</a></li>
-			<li><a href="/contact">contact</a></li>
-			<li><a href="/portafolio">portafolio</a></li>
-		</ul>
-	</nav>
+	@include('partials/nav')
 	@yield('content')
 </body>
 </html>
