@@ -22,8 +22,8 @@ class CreatePasswordResetsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
+
+*w     * @return void
      */
     public function down()
     {

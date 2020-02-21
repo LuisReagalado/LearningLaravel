@@ -1,9 +1,17 @@
 
 	<nav>
 		<ul>
-			<li class="{{setActive('home')}}"><a href="/">@lang('Home')</a></li>
-			<li class="{{setActive('about')}}"> <a href="/about">@lang('about')</a></li>
-			<li class="{{setActive('contact')}}"><a href="/contact">@lang('contact')</a></li>
-			<li class="{{setActive('portafolio')}}"><a href="/portafolio">@lang('portafolio')</a></li>
+			<li class="{{setActive('home')}}"><a href="{{route('home')}}">@lang('Home')</a></li>
+			<li class="{{setActive('about')}}"> <a href="{{route('about')}}">@lang('about')</a></li>
+			<li class="{{setActive('contact')}}"><a href="{{route('contact')}}">@lang('contact')</a></li>
+			<li class="{{setActive('Projects.*')}}"><a href="{{route('Projects.index')}}">@lang('Projects')</a></li>
+			@guest
+				<li><a href="{{route('login')}}">LogIn</a></li>
+			@else
+				<li><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesion</a></li>
+			@endguest
 		</ul>
 	</nav>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+	@csrf
+</form>
